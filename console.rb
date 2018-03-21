@@ -10,3 +10,5 @@ Artist.delete_all
 
 artist1.save
 artist2.save
+
+puts Artist.all
