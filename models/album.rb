@@ -8,10 +8,11 @@ class Album
     @id = options['id'].to_i if options['id']
     @title = options['title']
     @genre = options['genre']
-    @artist_id = options['id'].to_i if options['id']
+    @artist_id = options['artist_id'].to_i if options['artist_id']
   end
 
   def save
+
     sql = "INSERT INTO albums (
     title, genre, artist_id
     )
@@ -25,6 +26,20 @@ class Album
     result = SqlRunner.run(sql, values)
     @id = result[0]['id'].to_i
 
+  end
+
+  def self.all
+
+    sql = "SELECT * FROM albums"
+    albums = SqlRunner.run(sql)
+    return albums.map {|album_object| Album.new(album_object)}
+
+  end
+
+  def self.delete_all
+
+    sql = "DELETE FROM albums"
+    SqlRunner.run(sql)
   end
 
 end
