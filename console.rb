@@ -21,5 +21,7 @@ album1.save
 album2.save
 album3.save
 
-puts Artist.all
-puts Album.all
+# puts Artist.all
+# puts Album.all
+
+puts artist1.find_album

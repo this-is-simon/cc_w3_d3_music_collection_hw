@@ -1,4 +1,5 @@
 require('pg')
+require_relative('album.rb')
 require_relative('../db/sql_runner')
 
 class Artist
@@ -44,15 +45,14 @@ class Artist
 
   end
 
-  def self.find_album
+  def find_album
 
-    sql="SELECT * FROM music_collection WHERE artist_id = $1"
+    sql = "SELECT * FROM albums WHERE artist_id = $1"
 
-    values=[@id]
+    values = [@id]
 
     array_of_hashes = SqlRunner.run(sql, values)
-    array_of_objects = array_of_hashes.map { |order_hash| Album.new(order_hash) }
-    #This mapping method here takes an array of hashes and creates a new array of objects (or 'rows')
+    array_of_objects = array_of_hashes.map { |album_hash| Album.new(album_hash) }
 
     return array_of_objects
 
