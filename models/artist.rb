@@ -44,4 +44,18 @@ class Artist
 
   end
 
+  def self.find_album
+
+    sql="SELECT * FROM music_collection WHERE artist_id = $1"
+
+    values=[@id]
+
+    array_of_hashes = SqlRunner.run(sql, values)
+    array_of_objects = array_of_hashes.map { |order_hash| Album.new(order_hash) }
+    #This mapping method here takes an array of hashes and creates a new array of objects (or 'rows')
+
+    return array_of_objects
+
+  end
+
 end
