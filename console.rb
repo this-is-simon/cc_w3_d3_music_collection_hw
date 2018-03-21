@@ -25,3 +25,4 @@ album3.save
 # puts Album.all
 
 puts artist1.find_album
+puts album1.find_artist
